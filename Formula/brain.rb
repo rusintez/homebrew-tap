@@ -1,12 +1,12 @@
 class Brain < Formula
   desc "Local AI assistant that runs entirely on your Mac"
   homepage "https://github.com/rusintez/brain"
-  version "0.1.1"
+  version "0.1.2"
   license "MIT"
 
   on_arm do
-    url "https://github.com/rusintez/brain/releases/download/v0.1.1/brain-darwin-arm64.tar.gz"
-    sha256 "e1063a03ce3485595cf9839229ac06e2ea34c253d2f36bd2baeb06bfdbc5d642"
+    url "https://github.com/rusintez/brain/releases/download/v0.1.2/brain-darwin-arm64.tar.gz"
+    sha256 "94aa25e95e2cb6a656af776c37b72428d10dcc17903306edbdf87ae64fca1780"
   end
 
   depends_on :macos
