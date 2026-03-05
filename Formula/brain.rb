@@ -6,7 +6,7 @@ class Brain < Formula
 
   on_arm do
     url "https://github.com/rusintez/brain/releases/download/v0.1.0/brain-darwin-arm64.tar.gz"
-    sha256 "PLACEHOLDER_SHA256"
+    sha256 "5e16cfe6139aac46220ed6d3f1fbfe9d5a8d446a855bd4163fab1503671a08e0"
   end
 
   depends_on :macos
