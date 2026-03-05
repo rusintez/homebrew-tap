@@ -1,12 +1,12 @@
 class Brain < Formula
   desc "Local AI assistant that runs entirely on your Mac"
   homepage "https://github.com/rusintez/brain"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
 
   on_arm do
-    url "https://github.com/rusintez/brain/releases/download/v0.1.0/brain-darwin-arm64.tar.gz"
-    sha256 "5e16cfe6139aac46220ed6d3f1fbfe9d5a8d446a855bd4163fab1503671a08e0"
+    url "https://github.com/rusintez/brain/releases/download/v0.1.1/brain-darwin-arm64.tar.gz"
+    sha256 "e1063a03ce3485595cf9839229ac06e2ea34c253d2f36bd2baeb06bfdbc5d642"
   end
 
   depends_on :macos
@@ -48,6 +48,9 @@ class Brain < Formula
       Skills are stored in ~/.config/brain/skills/
       
       Models will download on first use (~500MB-2GB each).
+      
+      Some skills need optional tools:
+        brew install ripgrep   # for grep/search skills
       
       Quick start:
         brain "What files are here?"
