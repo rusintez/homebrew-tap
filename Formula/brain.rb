@@ -9,17 +9,17 @@ class Brain < Formula
   depends_on :xcode => ["15.0", :build]
   depends_on :arch => :arm64
 
-  # Disable Homebrew sandbox - SPM needs network access for package resolution
-  sandbox false
-
   def install
     # Build with xcodebuild (required for Metal shaders)
+    # IDEPackageSupportDisableManifestSandbox allows SPM in Homebrew's sandbox
     system "xcodebuild", "build",
            "-scheme", "brain",
            "-configuration", "Release",
            "-destination", "platform=macOS",
            "-derivedDataPath", ".derived",
-           "-skipPackagePluginValidation"
+           "-skipPackagePluginValidation",
+           "-skipMacroValidation",
+           "IDEPackageSupportDisableManifestSandbox=YES"
 
     # Install binary
     libexec.install ".derived/Build/Products/Release/brain"
