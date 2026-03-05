@@ -1,33 +1,23 @@
 class Brain < Formula
   desc "Local AI assistant that runs entirely on your Mac"
   homepage "https://github.com/rusintez/brain"
-  url "https://github.com/rusintez/brain/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "24fc19dc8cf3911535f33b6f182bd2799bfd124997e3940784f4e41840a16082"
+  version "0.1.0"
   license "MIT"
 
+  on_arm do
+    url "https://github.com/rusintez/brain/releases/download/v0.1.0/brain-darwin-arm64.tar.gz"
+    sha256 "PLACEHOLDER_SHA256"
+  end
+
   depends_on :macos
-  depends_on :xcode => ["15.0", :build]
   depends_on :arch => :arm64
 
   def install
-    # Build with xcodebuild (required for Metal shaders)
-    # IDEPackageSupportDisableManifestSandbox allows SPM in Homebrew's sandbox
-    system "xcodebuild", "build",
-           "-scheme", "brain",
-           "-configuration", "Release",
-           "-destination", "platform=macOS",
-           "-derivedDataPath", ".derived",
-           "-skipPackagePluginValidation",
-           "-skipMacroValidation",
-           "IDEPackageSupportDisableManifestSandbox=YES"
+    # Install binary and Metal bundle
+    libexec.install "brain"
+    libexec.install "mlx-swift_Cmlx.bundle"
 
-    # Install binary
-    libexec.install ".derived/Build/Products/Release/brain"
-    
-    # Install Metal bundle
-    libexec.install ".derived/Build/Products/Release/mlx-swift_Cmlx.bundle"
-
-    # Create wrapper script that sets correct working directory for bundle
+    # Create wrapper script
     (bin/"brain").write <<~EOS
       #!/bin/bash
       exec "#{libexec}/brain" "$@"
