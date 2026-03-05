@@ -11,11 +11,14 @@ class Brain < Formula
 
   def install
     # Build with xcodebuild (required for Metal shaders)
+    # -skipPackagePluginValidation and -disableSandbox needed for Homebrew environment
     system "xcodebuild", "build",
            "-scheme", "brain",
            "-configuration", "Release",
            "-destination", "platform=macOS",
-           "-derivedDataPath", ".derived"
+           "-derivedDataPath", ".derived",
+           "-skipPackagePluginValidation",
+           "-disableSandbox"
 
     # Install binary
     libexec.install ".derived/Build/Products/Release/brain"
